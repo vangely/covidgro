@@ -28,7 +28,7 @@ CONTENT_STYLE = {
 
 sidebar = html.Div(
     [
-        html.H2("Menu", className="display-4"),
+        # html.H2("Menu", className="display-4"),
         html.Hr(),
         dbc.Nav(
             [
