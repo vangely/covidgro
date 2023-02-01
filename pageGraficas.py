@@ -83,61 +83,66 @@ print("MUJERES: ", round((100 / int(total_rows)) * int(len(cantindadMP2.axes[0])
 
 
 layout = html.Div([
-    html.Div([
-        dbc.Row([
-            dbc.Col(
-                dbc.Card(
-                    dbc.CardBody(
-                        [
-                            html.H5("Muestra de población", className="card-title",
-                                    style={"textAlign": "center", "font-size": "1.5rem"}),
-                            html.P(f"{totalHabEstado}", style={"textAlign": "center", "font-size": "2rem"}),
-                            # dbc.Button("Go somewhere", color="primary"),
-                        ]
-                    ), className="w-50",
-                ), width=4
-            ),
-            dbc.Col(
-                dbc.Card(
-                    dbc.CardBody(
-                        [
-                            html.H5("Hombres fallecidos", className="card-title",
-                                    style={"textAlign": "center", "font-size": "1.5rem"}),
-                            html.P(f"{resDefUIC['H']}", style={"textAlign": "center", "font-size": "2rem"}),
-                            # dbc.Button("Go somewhere", color="primary"),
-                        ]
-                    ), className="w-50",
-                ), width=4
-            ),
-            dbc.Col(
-                dbc.Card(
-                    dbc.CardBody(
-                        [
-                            html.H5("Mujeres fallecidos", className="card-title",
-                                    style={"textAlign": "center", "font-size": "1.5rem"}),
-                            html.P(f"{resDefUIC['M']}", style={"textAlign": "center", "font-size": "2rem"}),
-                            # dbc.Button("Go somewhere", color="primary"),
-                        ]
-                    ), className="w-50",
-                ), width=4
-            ),
-        ]),
-    ]),
+    # html.Div([
+    dbc.Row([
+        dbc.Col(
+            dbc.Card(
+                dbc.CardBody(
+                    [
+                        html.H5("Muestra de población", className="card-title",
+                                style={"textAlign": "center", "font-size": "1.5rem"}),
+                        html.P(f"{totalHabEstado}", style={"textAlign": "center", "font-size": "2rem"}),
+                        # dbc.Button("Go somewhere", color="primary"),
+                    ]
+                ), style={"border": "none"}
+            ), width=4, className="shadow p-3 mb-5 bg-white rounded col-lg-3 col-md-6 col-sm-12 col-xs-12",
+        ),
+        dbc.Col(
+            dbc.Card(
+                dbc.CardBody(
+                    [
+                        html.H5("Hombres fallecidos", className="card-title",
+                                style={"textAlign": "center", "font-size": "1.5rem"}),
+                        html.P(f"{resDefUIC['H']}", style={"textAlign": "center", "font-size": "2rem"}),
+                        # dbc.Button("Go somewhere", color="primary"),
+                    ]
+                ), style={"border": "none"}
+            ), width=3, className="shadow p-3 mb-5 bg-white rounded col-lg-3 col-md-6 col-sm-12 col-xs-12",
+        ),
+        dbc.Col(
+            dbc.Card(
+                dbc.CardBody(
+                    [
+                        html.H5("Mujeres fallecidas", className="card-title",
+                                style={"textAlign": "center", "font-size": "1.5rem"}),
+                        html.P(f"{resDefUIC['M']}", style={"textAlign": "center", "font-size": "2rem"}),
+                        # dbc.Button("Go somewhere", color="primary"),
+                    ]
+                ), style={"border": "none"}
+            ), width=3, className="shadow p-3 mb-5 bg-white rounded col-lg-3 col-md-6 col-sm-12 col-xs-12",
+        ),
+    ], className="row justify-content-evenly"),
+    # ]),
+    html.Br(),
+    html.Br(),
     html.Div(html.Div([
-        html.P('Tipos de Graficas:')
-    ])),
-    html.Div(html.Div([
+        html.P('Tipos de Gráficas:'),
+        html.Br(),
         dcc.Dropdown(
             id='opciones', clearable=False,
             value="edad",
             options=[
-                {'label': 'Fallecimiento por genero', 'value': 'edad'},
-                {'label': 'Población Indigena', 'value': 'indigena'},
+                {'label': 'Fallecimiento por género', 'value': 'edad'},
+                {'label': 'Población Indígena', 'value': 'indigena'},
                 {'label': 'Padecimientos asociados al COVID', 'value': 'padecimientos'},
                 {'label': 'Hospitalizaciones', 'value': 'hospital'},
             ],
         )
-    ], className="three columns"), className="six columns"),
+    ])),
+    # html.Div(html.Div([
+    #
+    # ]
+    # )),
     html.Div(id="output-div", children=[]),
 ])
 
@@ -186,7 +191,7 @@ def update_output(value):
                 # ]),
                 html.Br(),
                 html.Br(),
-                html.H1("Padecimientos que la población indigena contrajo", style={'textAlign': 'center'},
+                html.H1("Padecimientos que la población indígena contrajo", style={'textAlign': 'center'},
                         className="display-4"),
                 html.Div([dcc.Graph(figure=figIndig)], className="six columns"),
                 # html.Div([dcc.Graph(figure=figBarras)], className="six columns"),

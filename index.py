@@ -32,9 +32,9 @@ sidebar = html.Div(
         html.Hr(),
         dbc.Nav(
             [
-                dbc.NavLink("Home", href="/", active="exact"),
-                dbc.NavLink("Graficas", href="/pageGraficas", active="exact"),
-                dbc.NavLink("Descargar Archivos CSV", href="/descargaCsv", active="exact"),
+                dbc.NavLink("Covid-Gro", href="/", active="exact"),
+                dbc.NavLink("Gráficas", href="/pageGraficas", active="exact"),
+                dbc.NavLink("Descargas", href="/descargaCsv", active="exact"),
                 # dbc.NavLink("Page 2", href="/page-2", active="exact"),
             ],
             vertical=True,

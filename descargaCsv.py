@@ -10,11 +10,8 @@ df = pd.read_csv(dwn_url, encoding='latin')
 
 layout = html.Div(
     [
-        html.H1("Datos seleccionados del estado de Guerrero", style={'textAlign': 'center'}, className="display-4"),
+        html.H1("Catálogo COVID del estado de Guerrero", style={'textAlign': 'center'}, className="display-4"),
         html.Hr(),
-        html.P("Puede descargar el archivo en formato CSV, el cual pertenece unicamente al estado de Guerrero",
-               style={"font-size": "1.25rem", 'textAlign': 'justify'}
-               ),
         dbc.Button("Descargar CSV", id="btn_csv", color="primary", className="me-1"),
         dcc.Download(id="download-dataframe-csv"),
     ]
