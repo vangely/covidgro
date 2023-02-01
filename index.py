@@ -12,39 +12,51 @@ from app import app
 from app import server
 
 SIDEBAR_STYLE = {
-    "position": "fixed",
+    # "position": "fixed",
     "top": 0,
-    "left": 0,
+    # "left": 0,
     "bottom": 0,
-    "width": "16rem",
-    "padding": "2rem 1rem",
+    # "width": "16rem",
+    # "padding": "2rem 1rem",
     "background-color": "#f8f9fa",
 }
 CONTENT_STYLE = {
-    "margin-left": "18rem",
-    "margin-right": "2rem",
-    "padding": "2rem 1rem",
+    "margin-top": "2rem",
+    "margin-left": "5rem",
+    # "margin-left": "auto",
+    "margin-right": "5rem",
+    # "margin-right": "auto",
+    # "padding": "2rem 1rem",
 }
 
 sidebar = html.Div(
     [
-        # html.H2("Menu", className="display-4"),
-        html.Hr(),
+        # html.H2("Menu", className="display-4"),#003479;
+        # html.Hr(),
         dbc.Nav(
             [
-                dbc.NavLink("Covid-Gro", href="/", active="exact"),
-                dbc.NavLink("Gráficas", href="/pageGraficas", active="exact"),
-                dbc.NavLink("Descargas", href="/descargaCsv", active="exact"),
+                dbc.NavItem(dbc.NavLink("Covid-Gro", href="/", active="exact"),
+                            ),
+                dbc.NavItem(dbc.NavLink("Gráficas", href="/pageGraficas", active="exact"),
+
+                            ),
+                dbc.NavItem(dbc.NavLink("Descargas", href="/descargaCsv", active="exact"),
+                            ),
                 # dbc.NavLink("Page 2", href="/page-2", active="exact"),
-            ],
-            vertical=True,
-            pills=True,
+            ], pills=True, fill=True, style={"gap": "16px"}
+            # brand="NavbarSimple",
+            # brand_href="#",
+            # color="primary",
+            # dark=True,
         ),
     ],
+
     style=SIDEBAR_STYLE,
 )
-
-content = html.Div(id="page-content", children=[], style=CONTENT_STYLE)
+content = html.Div(id="page-content", children=[],
+                   # style=CONTENT_STYLE
+                   style={"margin-top": "2rem"}
+                   )
 
 app.layout = html.Div([
     dcc.Location(id="url"),

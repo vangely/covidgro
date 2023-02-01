@@ -80,7 +80,14 @@ print("MUJERES: ", round((100 / int(total_rows)) * int(len(cantindadMP2.axes[0])
 # external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 # app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 # ENTIDAD_NAC
-
+CONTENT_STYLE = {
+    "margin-top": "2rem",
+    "margin-left": "5rem",
+    # "margin-left": "auto",
+    "margin-right": "0rem",
+    # "margin-right": "auto",
+    # "padding": "2rem 1rem",
+}
 
 layout = html.Div([
     # html.Div([
@@ -95,7 +102,7 @@ layout = html.Div([
                         # dbc.Button("Go somewhere", color="primary"),
                     ]
                 ), style={"border": "none"}
-            ), width=4, className="shadow p-3 mb-5 bg-white rounded col-lg-3 col-md-6 col-sm-12 col-xs-12",
+            ), width=4, className="shadow p-3 mb-5 bg-white rounded", md=4, xs=12, sm=6, lg=2, xl=3
         ),
         dbc.Col(
             dbc.Card(
@@ -107,7 +114,7 @@ layout = html.Div([
                         # dbc.Button("Go somewhere", color="primary"),
                     ]
                 ), style={"border": "none"}
-            ), width=3, className="shadow p-3 mb-5 bg-white rounded col-lg-3 col-md-6 col-sm-12 col-xs-12",
+            ), width=2, className="shadow p-3 mb-5 bg-white rounded", md=4, xs=12, sm=6, lg=2, xl=3
         ),
         dbc.Col(
             dbc.Card(
@@ -119,9 +126,9 @@ layout = html.Div([
                         # dbc.Button("Go somewhere", color="primary"),
                     ]
                 ), style={"border": "none"}
-            ), width=3, className="shadow p-3 mb-5 bg-white rounded col-lg-3 col-md-6 col-sm-12 col-xs-12",
+            ), width=2, className="shadow p-3 mb-5 bg-white rounded ", md=4, xs=12, sm=6, lg=2, xl=3
         ),
-    ], className="row justify-content-evenly"),
+    ], className="row justify-content-evenly", style={"gap": "16px"}),
     # ]),
     html.Br(),
     html.Br(),
@@ -138,7 +145,10 @@ layout = html.Div([
                 {'label': 'Hospitalizaciones', 'value': 'hospital'},
             ],
         )
-    ])),
+    ], style={"margin-top": "2rem",
+              "margin-left": "5rem",
+              # "margin-left": "auto",
+              "margin-right": "5rem", })),
     # html.Div(html.Div([
     #
     # ]
@@ -164,14 +174,16 @@ def update_output(value):
         colores = ["Hombres", "Mujeres"]
         figGen = px.bar(x=['Hombres', 'Mujeres'], y=[resDefUIC['H'], resDefUIC['M']],
                         color=colores, color_discrete_map={'Hombres': '#30BFDD', 'Mujeres': '#F7C0BB'})
+
         return [
             html.Div([
                 html.Br(),
                 html.Br(),
                 # html.H1("Padecimientos que la población indigena contrajo", style={'textAlign': 'center'},
                 #         className="display-4"),
-                html.Div([dcc.Graph(figure=figGen)], className="six columns"),
-            ])
+                html.Div([dcc.Graph(figure=figGen, responsive=True)]),
+            ]
+            )
         ]
 
         # Selección opción de Padecimientos Asociados al COVID - Pastel
@@ -193,7 +205,7 @@ def update_output(value):
                 html.Br(),
                 html.H1("Padecimientos que la población indígena contrajo", style={'textAlign': 'center'},
                         className="display-4"),
-                html.Div([dcc.Graph(figure=figIndig)], className="six columns"),
+                html.Div([dcc.Graph(figure=figIndig, responsive=True)]),
                 # html.Div([dcc.Graph(figure=figBarras)], className="six columns"),
                 # fig.show(), className="six columns"
             ])
@@ -222,23 +234,25 @@ def update_output(value):
                 html.Div([
                     html.Br(),
                     html.Br(),
-                    dbc.Card(
-                        dbc.CardBody(
-                            [
-                                html.H5("Total de personas que sufrieron padecimientos", className="card-title",
-                                        style={"textAlign": "center", "font-size": "1.5rem"}),
-                                html.P(f"{suma_padecimientos}", style={"textAlign": "center", "font-size": "2rem"}),
-                                # dbc.Button("Go somewhere", color="primary"),
-                            ]
-                        ), className="w-50",
-                    ),
+                    dbc.Col(
+                        dbc.Card(
+                            dbc.CardBody(
+                                [
+                                    html.H5("Total de personas que sufrieron padecimientos", className="card-title",
+                                            style={"textAlign": "center", "font-size": "1.5rem"}),
+                                    html.P(f"{suma_padecimientos}", style={"textAlign": "center", "font-size": "2rem"}),
+                                    # dbc.Button("Go somewhere", color="primary"),
+                                ], style={"border": "none"}
+                            ), className="w-50 shadow p-3 mb-5 bg-white rounded"
+                        ),
+                    )
                 ], style={'align-content': 'center'}),
                 html.Br(),
 
                 html.Br(),
                 html.Div([
-                    html.Div([dcc.Graph(figure=fig)], className="six columns", style={'align-content': 'center', }),
-                    html.Div([dcc.Graph(figure=figBarras)], className="six columns"),
+                    html.Div([dcc.Graph(figure=fig, responsive=True)], style={'align-content': 'center', }),
+                    html.Div([dcc.Graph(figure=figBarras, responsive=True)]),
                 ], style={'align-content': 'center'})
                 # fig.show(), className="six columns"
             ], style={'align-content': 'center'}),
@@ -258,7 +272,8 @@ def update_output(value):
                 html.Br(),
                 html.H1("Padecimientos que requirieron hospitalizaciones", style={'textAlign': 'center'},
                         className="display-4"),
-                html.Div([dcc.Graph(figure=figSex)], className="six columns"),
+                dcc.Graph(figure=figSex, responsive=True)
+                # html.Div([]),
                 # html.Div([dcc.Graph(figure=figBarras)], className="six columns"),
                 # fig.show(), className="six columns"
             ])

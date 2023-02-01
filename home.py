@@ -37,6 +37,9 @@ layout = html.Div([
                style={"font-size": "1.25rem", "textAlign": "justify"},
                className="six columns"
                )
-    ]),
+    ], style={"margin-top": "2rem",
+              "margin-left": "5rem",
+              # "margin-left": "auto",
+              "margin-right": "5rem", }),
     html.Div(id="output-div", children=[]),
 ])
